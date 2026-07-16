@@ -1,8 +1,10 @@
-SELECT
-score,
+# Write your MySQL query statement below
+WITH cte AS (
+    SELECT score,
+           DENSE_RANK() OVER (ORDER BY score DESC) AS 'rank'
+    FROM scores
+)
 
-DENSE_RANK() OVER (
-    ORDER BY score DESC
-) AS `Rank`
 
-FROM scores;
+SELECT *
+FROM cte
